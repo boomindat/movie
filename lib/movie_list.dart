@@ -32,16 +32,19 @@ class _MovieListState extends State<MovieList> {
     movies = List.empty(growable: true);
     movies = await helper.getUpcoming();
     setState(() {
-      moviesCount = movies.length;
       movies = movies;
+      moviesCount = movies.length;
     });
   }
 
   Future search(text) async {
+    // print("search $text");
     movies = await helper.findMovies(text);
+
+    // print('${movies}');
     setState(() {
-      moviesCount = movies.length;
       movies = movies;
+      moviesCount = movies.length;
     });
   }
 
@@ -60,12 +63,14 @@ class _MovieListState extends State<MovieList> {
                 if (this.visibleIcon.icon == Icons.search) {
                   this.visibleIcon = Icon(Icons.cancel);
                   this.searchBar = TextField(
+                    decoration:
+                        InputDecoration(fillColor: Colors.white, filled: true),
                     onSubmitted: (String text) {
                       search(text);
                     },
                     textInputAction: TextInputAction.search,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 20.0,
                     ),
                   );
@@ -101,9 +106,9 @@ class _MovieListState extends State<MovieList> {
               leading: CircleAvatar(
                 backgroundImage: image,
               ),
-              title: Text(movies[position].title),
+              title: Text(movies[position].title.toString()),
               subtitle: Text('Released: ' +
-                  movies[position].releaseDate +
+                  movies[position].releaseDate.toString() +
                   ' - Vote: ' +
                   movies[position].voteAverage.toString()),
             ),

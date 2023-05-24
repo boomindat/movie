@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'movie.dart';
 
@@ -12,7 +11,7 @@ class MovieDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     String path;
     if (movie.posterPath != null) {
-      path = imgPath + movie.posterPath;
+      path = imgPath + movie.posterPath!;
     } else {
       path =
           'https://images.freeimages.com/images/large-previews/5eb/movie-clapboard-1184339.jpg';
@@ -22,7 +21,7 @@ class MovieDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(movie.title),
+        title: Text(movie.title!),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -34,7 +33,7 @@ class MovieDetail extends StatelessWidget {
                   child: Image.network(path)),
               Container(
                 padding: EdgeInsets.only(left: 16, right: 16),
-                child: Text(movie.overview),
+                child: Text(movie.overview!),
               )
             ],
           ),
